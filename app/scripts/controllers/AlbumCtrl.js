@@ -1,11 +1,9 @@
 (function () {
-    function AlbumCtrl() {
-        this.albumData = angular.copy(albumPicasso); //I don't know if this is right.
+    function AlbumCtrl(Fixtures) {
+        this.albumData = Fixtures.getAlbum(); 
     }
     
     angular
         .module('blocJams')
-        .controller('AlbumCtrl', AlbumCtrl);
+        .controller('AlbumCtrl', ['Fixtures', AlbumCtrl]);
 })();
-
-//adding something to make a commit
