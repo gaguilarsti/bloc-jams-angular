@@ -7,3 +7,5 @@
         .module('blocJams')
         .controller('AlbumCtrl', AlbumCtrl);
 })();
+
+//adding something to make a commit
