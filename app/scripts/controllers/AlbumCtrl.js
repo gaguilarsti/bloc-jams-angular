@@ -1,6 +1,6 @@
 (function () {
     function AlbumCtrl() {
-        this.album = angular.copy(albumPicasso); //I don't know if this is right.
+        this.albumData = angular.copy(albumPicasso); //I don't know if this is right.
     }
     
     angular
