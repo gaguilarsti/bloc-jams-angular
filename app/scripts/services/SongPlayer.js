@@ -1,7 +1,17 @@
 (function () {
     function SongPlayer() {
+        
+        /* 
+        @desc the SongPlayer object declration.  We declare the object and then write action methods to it below.
+        @type {Object}
+        */
         var SongPlayer = {};
         
+        
+        /* 
+        @desc the song that is currently selected by the user
+        @type {Object}
+        */
         var currentSong = null;
         
         /* 
@@ -11,14 +21,16 @@
         
         var currentBuzzOjbect = null;
         
+        /**
+        @function playSong
+        @desc plays a song when the play button is selected and sets the playing status to true
+        @param nothing
+        **/
         
-        /*
-        var playSong = function() {
+        var playSong = function (song) {
             currentBuzzOjbect.play();
             song.playing = true;
         };
-        
-        */
         
         /**
         @function setSong
@@ -43,12 +55,11 @@
         SongPlayer.play = function (song) {
             if (currentSong !== song) {
                 setSong(song);
-                currentBuzzOjbect.play();
-                song.playing = true;
+                playSong(song);
                 
             } else if (currentSong === song) {
                 if (currentBuzzOjbect.isPaused()) {
-                    currentBuzzOjbect.play();
+                    playSong(song);
                 }
             }
         };
