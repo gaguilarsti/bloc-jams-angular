@@ -32,6 +32,17 @@
             song.playing = true;
         };
         
+         /**
+        @function stopSong
+        @desc stops a song when the stop button is selected and sets the playing status to null
+        @param nothing
+        **/
+        
+        var stopSong = function (song) {
+            currentBuzzOjbect.stop();
+            song.playing = null;
+        };
+        
         /**
         @function setSong
         @desc Stops currently playing song and loads new audio file as current
@@ -110,8 +121,28 @@
             currentSongIndex--;
             
             if (currentSongIndex < 0) {
-                currentBuzzOjbect.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(SongPlayer.currentSong);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+        
+        /** 
+        @function next
+        @desc sets the song index when the user clicks next button to one value higher and cycles back to 0 when the song index exceeds the index.length.  
+        @param {Object} song
+        **/
+        
+        SongPlayer.next = function () {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+            
+            var lastSongIndex = currentAlbum.songs.length - 1;
+            
+            if (currentSongIndex > lastSongIndex) {
+                stopSong(SongPlayer.currentSong);
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
