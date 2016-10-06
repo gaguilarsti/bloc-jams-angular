@@ -40,6 +40,10 @@
                     return {width: percentString()};
                 };
                 
+                scope.thumbStyle = function () {
+                    return {left: percentString()};
+                };
+                
                 /*
                 @desc Updates the seek bar value based on the seek bar's width and the location of the user's click on the seek bar.
                 */
