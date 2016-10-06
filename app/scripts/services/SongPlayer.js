@@ -1,5 +1,5 @@
 (function () {
-    function SongPlayer(Fixtures) {
+    function SongPlayer($rootScope, Fixtures) {
         
         /* 
         @desc the SongPlayer object declration.  We declare the object and then write action methods to it below.
@@ -60,6 +60,12 @@
                 preload: true
             });
             
+            currentBuzzOjbect.bind('timeupdate', function () {
+                $rootScope.$apply(function () {
+                    SongPlayer.currentTime = currentBuzzOjbect.getTime();
+                });
+            });
+            
             SongPlayer.currentSong = song;
         };
         
@@ -78,6 +84,13 @@
         @type {Object}
         */
         SongPlayer.currentSong = null;
+        
+        /** 
+        @desc Current playback time in seconds of currently playing song
+        @type {number}
+        */
+        
+        SongPlayer.currentTime = null;
         
          /**
          @function play
@@ -150,12 +163,18 @@
             }
         };
         
+        SongPlayer.setCurrentTime = function (time) {
+            if (currentBuzzOjbect) {
+                currentBuzzOjbect.setTime(time);
+            }
+        };
+        
         return SongPlayer;
     }
     
     angular
         .module('blocJams')
-        .factory('SongPlayer', SongPlayer);
+        .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
     
     
 })();
