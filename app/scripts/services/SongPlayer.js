@@ -172,6 +172,12 @@
             }
         };
         
+        /**
+        * @function setCurrentTime
+        * @desc Set the current time of the song playing as it is playing 
+        * @param {Number} volume
+        */
+        
         SongPlayer.setCurrentTime = function (time) {
             if (currentBuzzOjbect) {
                 currentBuzzOjbect.setTime(time);
